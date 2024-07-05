@@ -1,0 +1,43 @@
+================================================================================
+Serial Checker: [Napkin Notes] General User Story/Case stuff
+================================================================================
+Use Case/Feature Breakdown
+
+General States
+	Main Menu (select a serial)
+	Serial Off/Paused
+	Serial Live/Scanning
+	Serial Active/Sampling
+
+Configurable Options
+	Sample Rate
+	Sample Size
+	Sample Trigger Type
+	Response Trigger Type
+	Response Value A
+	Response Value B
+
+Ideas on Set Options
+	Sample Triggers- on button press (in scanning state), on preset pin rising/falling edge
+	Response Triggers- on button press (in scanning state), on preset pin(s) rising falling edge, on reception of data
+
+Response Values Per Serial
+	GPIO- transition values for each output pin?
+	UART- 2 byte value and select (1-2 bytes or echo)
+	I2C- address and read value
+	SPI- 2 byte value and select (bytes or echo)
+
+Data Types Entered by User
+	"Drop Down Box" Input (i.e. preset options- choose one)
+	Integer value (likely "drop down box" per digit- hex would simplify some selection)
+
+Types of Displays
+	Text- Typically in some sort of "selection" box
+	Digits- Also likely in some sort of box
+	Waveforms- digital waves showing live and past data values
+	Symbols- Minor symbols to indicate actions to take (or being taken)
+		e.g. arrows for indicating controls, smaller text "symbols" indicating state or actions being taken
+	"Indicators"- something to indicate selected or selectable objects (e.g. boxes, inversions)
+		(will have to be able to put "over" or "on" other displayed info)
+
+================================================================================
