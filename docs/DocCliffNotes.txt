@@ -40,4 +40,8 @@ Types of Displays
 	"Indicators"- something to indicate selected or selectable objects (e.g. boxes, inversions)
 		(will have to be able to put "over" or "on" other displayed info)
 
+
+Selections
+	Sample Rate (Hz) = {
+
 ================================================================================
