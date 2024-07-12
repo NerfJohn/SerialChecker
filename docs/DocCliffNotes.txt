@@ -1,6 +1,69 @@
 ================================================================================
 Serial Checker: [Napkin Notes] General User Story/Case stuff
 ================================================================================
+SW Arch/Design Notes
+
+(Assume temporarily there's no LCD/UI- what's our SW architecture?)
+	DriverLayer
+		Joystick- Two ADC measured values (X and Y)
+		Buttons- Two digital buttons
+		GPIOs- Four digital pin values (all/most bidirectional)
+		UART/USB- Transmit only UART connection
+		(Watchdog/reset device- TBD)
+	DeviceLayer
+		Joystick abstracted to 5 values (directions + center)
+		Buttons abstracted to High/Low
+		GPIO_Read abstracted to High/Low
+		GPIO_Drive abstracted to On/Off and High/Low
+	App/StateLayer
+		serial function must be consulted for interpreting triggers/response behavior
+		ui function must be consulted for interpreting where/what the cursor is on
+
+General Layers
+	AppLayer- Business/State Logic Level Code
+	DriverLayer- Drivers directly controlling HW
+	Utils- Utilities abstracting generic processes/services
+	DomainLayer- Data types "gluing" other layers together
+
+HW Implements
+	Joystick
+		reports 2 values to indicate x/y directions
+		likely will want as just 4
+		should consider debouncing ("analog" debounce)
+		will need to determine switching behavior (back to center, or bypass it?)
+		should consider if "hold" mechanics are needed, or just "move per iteration"
+	Buttons x 2
+		both report on/off
+		should consider debouncing
+		likely will divide into "confirm" and "cancel" behavior
+	GPIO x 4
+		each reports on/off value
+		consider debouncing
+		direction may change on pins
+		pins are read off reagardless of direction
+	LCD screen
+		used to show/report data
+		directly, its a SPI port to MCU- though could "abstract" as screen
+		likely will want abstract view of screen regardless (ie 7x7 grid, UI elements figured out beforehand)
+	Timer
+		Will need something to track at 1 ms intervals
+		this can likely be shared easily
+	UART/USB
+		pretty easy, only need output for exporting
+		will need to stream data over it however- up to ~ 2 KB
+	Reset
+		May want some from of reset element for asserting
+		reset may have HW level watchdog/HW reset implements
+
+Ideas on Devices
+	Joystick Device- simplifies joystick directions (handles debounce/direction logic)
+	Buttons Device- simplifies both/all buttons (handles debounce/direction logic)
+	GPIO Device- simplifies updating/sampling of pins
+	LCD Device- simplifies updating of screen
+
+================================================================================
+Chicken Scratchings/To Sort
+
 Use Case/Feature Breakdown
 
 General States
