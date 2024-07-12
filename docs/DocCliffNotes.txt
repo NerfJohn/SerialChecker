@@ -42,6 +42,22 @@ Types of Displays
 
 
 Selections
-	Sample Rate (Hz) = {
+	Sample Rate (Hz) = {10, 50, 100, 500, 1000}
+	Sample Size (#)  = {10, 50, 100, 500, 1000, 2000}
+	Trigger Type
+		GPIO = button press, posedge1, negedge1, posedge2, negedge2
+		UART = button press, negedgeT, negedgeR
+		I2C  = button press, posedgeC, negedgeC
+		SPI  = button press, posedgeS, negedgeS
+	Response Triggers
+		GPIO = button press, posedge1, negedge1, posedge2, negedge2, off
+		UART = button press, negedgeT, receive char, off
+		I2C  = -
+		SPI  = -
+	Response Types
+		GPIO = pos vs neg for both pins
+		UART = # bytes to send (1-2) and value(s)
+		I2C  = 16b address and 16b value
+		SPI  = pattern {hold low, hold high, shift on rotate} and value
 
 ================================================================================
